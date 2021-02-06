@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>แสดงผลการแทงหวยของคุณ</h2>
+<table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Lotto Number</th>
+        <th scope="col">Top</th>
+        <th scope="col">Down</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for lotto in CreateBetLotto %}
+      <tr>
+        <th scope="row">{{lotto.id}}</th>
+        <td>{{lotto.numberLotto}}</td>
+        <td>{{lotto.top}}</td>
+        <td>{{lotto.down}}</td>
+        <td>{{lotto.price}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
