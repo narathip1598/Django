@@ -24,6 +24,10 @@ urlpatterns = [
     path('form',views.form),
     path('addForm',views.addLotto),
     path('register',views.register),
-    path('addUser',views.addAccount)
+    path('addUser',views.addAccount),
+    path('loginForm',views.loginForm),
+    path('login',views.login),
+    path('logout',views.logout)
+
 
 ]
