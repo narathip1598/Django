@@ -2,6 +2,13 @@
 
 {% block content %}
 <h1 align='center'>สมัครสมาชิก</h1>
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+    {{message}}
+    {% endfor %}
+</div>
+{%endif%}
 <form action="addUser" method="post">
     {% csrf_token %}
     <div class="form-group"> 

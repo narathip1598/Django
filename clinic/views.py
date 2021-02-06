@@ -2,7 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render,redirect
 from .models import CreateBetLotto
 from django.contrib.auth.models import User
-
+from django.contrib import messages
 
 def hello(request):
     data=CreateBetLotto.objects.all()
@@ -38,10 +38,10 @@ def addAccount(request):
 
     if password==repassword :
         if User.objects.filter(username=username).exists():
-            print("Username นี้ถูกใช้ไปแล้ว")
+            messages.info(request,'*Username นี้ถูกใช้ไปแล้ว')
             return redirect('/register')
         elif User.objects.filter(email=email).exists():
-            print("Email นี้ถูกใช้ลงทะเบียนไปแล้ว")
+            messages.info(request,'*Email นี้ถูกใช้ไปแล้ว')
             return redirect('/register')
         else : 
             user=User.objects.create_user(
@@ -54,4 +54,5 @@ def addAccount(request):
             user.save()
             return redirect('/')
     else : 
+        messages.info(request,'*password ไม่ตรงกัน')
         return redirect('/register')
