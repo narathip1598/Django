@@ -27,7 +27,8 @@ urlpatterns = [
     path('addUser',views.addAccount),
     path('loginForm',views.loginForm),
     path('login',views.login),
-    path('logout',views.logout)
+    path('logout',views.logout),
+    path('addBet',views.addBet)
 
 
 ]

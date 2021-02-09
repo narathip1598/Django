@@ -27,7 +27,6 @@ def addLotto(request):
     price=request.POST['price']
     return render(request,'result.html',{'numberLotto':numberLotto,'top':top,'down':down,'price':price})
 
-
 def register(request):
     return render(request,'register.html')
 
@@ -59,6 +58,14 @@ def addAccount(request):
     else : 
         messages.info(request,'password ไม่ตรงกัน')
         return redirect('/register')
+
+def addBet(request):
+    numberLotto = request.POST['numberLotto']
+    top = request.POST['top']
+    down = request.POST['down']
+    price = request.POST['price']
+    CreateBetLotto.objects.create(numberLotto=numberLotto,top=top,down=down,price=price)
+    return redirect('/')
 
 def login(request):
     username=request.POST['username']
