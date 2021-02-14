@@ -22,13 +22,12 @@ urlpatterns = [
     path('', views.hello),
     path('page1',views.page1),
     path('form',views.form),
-    path('addForm',views.addLotto),
     path('register',views.register),
     path('addUser',views.addAccount),
     path('loginForm',views.loginForm),
     path('login',views.login),
     path('logout',views.logout),
-    path('addBet',views.addBet)
-
+    path('addBet',views.addBet),
+    path('name',views.get_name)
 
 ]
