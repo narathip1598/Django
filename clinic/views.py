@@ -87,21 +87,20 @@ def get_name(request):
         form = name(request.POST)
         if form.is_valid():
             numberLotto=request.POST['numberLotto']
-            try:
-                top = request.POST['top']
-                down = request.POST['down']
-                if top == 'on' and down == 'on':
-                    top = 'True'
-                    down = 'True'
-            except MultiValueDictKeyError:
-                top=False
-                down=False
-                if top == 'on':
-                        top='True'
-                        down='False'
-                elif down == 'on':
-                    top='False'
-                    down='True'
+            top = request.POST.get('top')
+            down = request.POST.get('down')
+            if top == 'on' and down == 'on':
+                top = 1
+                down = 1
+            elif top == 'on' and down == None:
+                top = 1
+                down = 0
+            elif top == None and down == 'on':
+                top = 0
+                down = 1
+            else:
+                top = 0
+                down = 0
             price=request.POST['price']
             CreateBetLotto.objects.create(
                 numberLotto=numberLotto,
