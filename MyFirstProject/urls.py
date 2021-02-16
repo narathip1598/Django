@@ -27,7 +27,6 @@ urlpatterns = [
     path('loginForm',views.loginForm),
     path('login',views.login),
     path('logout',views.logout),
-    path('addBet',views.addBet),
-    path('name',views.get_name)
+    path('bet',views.betLotto)
 
 ]

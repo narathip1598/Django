@@ -4,7 +4,6 @@ from .models import CreateBetLotto
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from .form import name
-from django.utils.datastructures import MultiValueDictKeyError
 
 def hello(request):
     data=CreateBetLotto.objects.all()
@@ -17,7 +16,7 @@ def page1(request):
     })
 
 def form(request):
-    return render(request,'form.html')
+    return render(request,'name.html')
 
 def loginForm(request):
     return render(request,'login.html')
@@ -53,20 +52,6 @@ def addAccount(request):
         messages.info(request,'password ไม่ตรงกัน')
         return redirect('/register')
 
-def addBet(request) :
-    numberLotto=request.POST['numberLotto']
-    top=request.POST['top']
-    down=request.POST['down']
-    price=request.POST['price']
-    bet=CreateBetLotto.objects.create(
-        numberLotto=numberLotto,
-        top=top,
-        down=down,
-        price=price
-        )
-    bet.save()
-    return redirect('/')
-
 def login(request):
     username=request.POST['username']
     password=request.POST['password']
@@ -82,7 +67,7 @@ def logout(request):
     auth.logout(request)
     return redirect('/')
 
-def get_name(request):
+def betLotto(request):
     if request.method == 'POST':
         form = name(request.POST)
         if form.is_valid():
@@ -111,4 +96,4 @@ def get_name(request):
             return HttpResponseRedirect('/')
     else: 
         form = name()
-    return render(request,'name.html',{'form':form})
+    return render(request,'bet.html',{'form':form})
