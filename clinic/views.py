@@ -1,9 +1,10 @@
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
-from .models import CreateBetLotto
+from .models import CreateBetLotto,Employee
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from .form import name
+from .formTest import formAdd
 
 def hello(request):
     data=CreateBetLotto.objects.all()
@@ -97,3 +98,18 @@ def betLotto(request):
     else: 
         form = name()
     return render(request,'bet.html',{'form':form})
+
+def addFormTest(request):
+    if request.method == 'POST':
+        form = formAdd(request.POST)
+        if form.is_valid():
+            firstName = request.POST['firstName']
+            lastName = request.POST['lastName']
+            Employee.objects.create(
+                firstName=firstName,
+                lastName=lastName
+            )
+            return HttpResponseRedirect('/')
+    else:
+        form = formAdd()
+    return render(request,'formtest.html',{'formTest':form})

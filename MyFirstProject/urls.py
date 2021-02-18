@@ -21,12 +21,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.hello),
     path('page1',views.page1),
-    path('form',views.form),
     path('register',views.register),
     path('addUser',views.addAccount),
     path('loginForm',views.loginForm),
     path('login',views.login),
     path('logout',views.logout),
-    path('bet',views.betLotto)
+    path('bet',views.betLotto),
+    path('addFormTest',views.addFormTest)
 
 ]
